@@ -1,6 +1,6 @@
 # CF Assistant
 
-A Codeforces problem recommendation system that helps competitive programmers discover problems tailored to their skill level and interests.
+A randomized and adaptive codeforces problem recommendation system that helps competitive programmers discover problems tailored to their skill level and interests.
 
 ## Overview
 
