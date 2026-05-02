@@ -204,7 +204,7 @@ Each recommended problem includes:
 - Score
 - Direct link to the problem
 
-### 8. Design Goals
+## Design Goals
 
 This algorithm is designed to achieve the following:
 
@@ -213,49 +213,6 @@ This algorithm is designed to achieve the following:
 - **Difficulty alignment**: problems stay close to the user's rating
 - **Exploration vs exploitation**: strong matches are chosen, but variety is preserved
 - **Diversity**: repeated tag patterns are reduced
-
-### 9. Algorithm Flowchart
-
-```mermaid
-flowchart TD
-    A["User Handle Input"] --> B["Fetch User Rating"]
-    B --> C["Fetch Submission History"]
-    C --> D["Fetch Full Problemset"]
-    D --> E["Parse Submissions"]
-    
-    E --> F["Calculate Weighted Attempts & Solves"]
-    F --> G["Build Attempted/Solved Sets"]
-    
-    G --> H{Has Submissions?}
-    H -->|Yes| I["Calculate Bayesian Success Rate"]
-    H -->|No| J["Set Default Weakness = 0.5"]
-    
-    I --> K["Add Exploration Bonus"]
-    K --> L["Calculate Final Weakness Scores"]
-    J --> L
-    
-    L --> M["Filter Problems by Rating Band"]
-    M --> N["Exclude Already Solved"]
-    N --> O["Filter Out Incomplete Problems"]
-    
-    O --> P["Calculate Problem Scores"]
-    P --> Q["Score = 0.5*avg_weakness + 0.2*max_weakness +<br/>0.1*tag_score + 0.05*unseen_bonus +<br/>0.15*rating_bonus"]
-    
-    Q --> R["Sort by Score"]
-    R --> S["Select Top 500 Problems"]
-    
-    S --> T["Apply Diversity Penalty"]
-    T --> U["Softmax Sampling with T=0.1"]
-    
-    U --> V["Generate Final Recommendations"]
-    V --> W["Return Problem List with Links"]
-    W --> X["Display to User"]
-    
-    style A fill:#e1f5ff
-    style X fill:#c8e6c9
-    style P fill:#fff3e0
-    style T fill:#f3e5f5
-```
 
 ## Project Structure
 
@@ -308,7 +265,7 @@ cf-assistant/
 
 ### Configuration
 
-Make config file at [frontend/src/constants/config.ts](frontend/src/constants/config.ts) and paste the following code
+Make config file at **frontend/src/constants/config.ts** and paste the following code
 
 ```typescript
 export const USER_HANDLE = "your_user_name";
