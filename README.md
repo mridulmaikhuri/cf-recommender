@@ -21,16 +21,13 @@ The submission history is processed to build the following statistics:
 - `attempted_problems`: set of all attempted problems
 - `solved_problems`: set of all solved problems
 
-#### Weighting Mechanism
+#### 2.1 Weighting Mechanism
 
 Each submission is weighted based on problem difficulty relative to the user's rating:
 
 ```
 w = exp((problem_rating - user_rating) / (user_rating - 300))
 ```
-
-- Harder problems contribute more weight
-- Easier problems contribute less weight
 
 This helps the system learn more from difficult attempts than from trivial ones.
 
@@ -76,7 +73,7 @@ weakness = (1 - success) + exploration
 - Higher value means the user is weaker in that tag
 - The values are normalized to [0, 1]
 
-#### Cold Start Handling
+#### 3.4 Cold Start Handling
 
 If the user has no submission history, all tags are assigned a default weakness:
 
@@ -88,21 +85,16 @@ This ensures new users still get balanced recommendations.
 
 ### 4. Candidate Filtering
 
-The system considers only problems in a rating band around the user's rating:
+The system considers only unsolved problems in a rating band around the user's rating:
 
 - From `rating - 200` to `rating + 200`
 - Rounded to the nearest 100
-
-Problems are excluded if:
-- They are already solved
-- They are missing important metadata
-- They have no tags
 
 This keeps recommendations relevant and useful.
 
 ### 5. Problem Scoring
 
-Each remaining problem is assigned a score based on several factors.
+Each candidate problem is assigned a score based on several factors.
 
 #### 5.1 Average Weakness
 
@@ -143,7 +135,7 @@ Where:
 
 If the problem is below the user's rating, the bonus is slightly reduced to prefer stronger practice.
 
-#### Final Scoring Formula
+#### 5.6 Final Scoring Formula
 
 The final score is a weighted combination of all features:
 
@@ -185,10 +177,6 @@ P(i) = exp(score_i / T) / sum(exp(score_j / T))
 
 Where:
 - `T = 0.1`
-
-This allows the recommender to balance:
-- **Exploitation**: choosing strong recommendations
-- **Exploration**: keeping some variety in the output
 
 A low temperature makes the sampling more focused on high-score candidates.
 
