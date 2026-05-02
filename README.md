@@ -1,10 +1,10 @@
-# CF Assistant
+# 🎯 CF Assistant
 
 A randomized and adaptive codeforces problem recommendation system that helps competitive programmers discover problems tailored to their skill level and interests.
 
-## Recommendation Algorithm Explained
+## 🧠 Recommendation Algorithm Explained
 
-### 1. Data Collection
+### 1. 📊 Data Collection
 
 For a given user `handle`, the system fetches:
 
@@ -12,7 +12,7 @@ For a given user `handle`, the system fetches:
 - Submission history
 - Full problemset with tags
 
-### 2. Submission Parsing
+### 2. 📝 Submission Parsing
 
 The submission history is processed to build the following statistics:
 
@@ -31,7 +31,7 @@ w = exp((problem_rating - user_rating) / (user_rating - 300))
 
 This helps the system learn more from difficult attempts than from trivial ones.
 
-### 3. Tag Weakness Estimation
+### 3. 📈 Tag Weakness Estimation
 
 After parsing submissions, the system estimates how weak the user is in each tag.
 
@@ -83,7 +83,7 @@ weakness[tag] = 0.5
 
 This ensures new users still get balanced recommendations.
 
-### 4. Candidate Filtering
+### 4. 🔍 Candidate Filtering
 
 The system considers only unsolved problems in a rating band around the user's rating:
 
@@ -92,7 +92,7 @@ The system considers only unsolved problems in a rating band around the user's r
 
 This keeps recommendations relevant and useful.
 
-### 5. Problem Scoring
+### 5. 🎲 Problem Scoring
 
 Each candidate problem is assigned a score based on several factors.
 
@@ -148,7 +148,7 @@ score =
   0.15 * rating_bonus
 ```
 
-### 6. Candidate Selection
+### 6. 🏆 Candidate Selection
 
 After scoring, the system selects the final recommendations in two stages.
 
@@ -180,7 +180,7 @@ Where:
 
 A low temperature makes the sampling more focused on high-score candidates.
 
-### 7. Final Output
+### 7. 📤 Final Output
 
 Each recommended problem includes:
 
@@ -192,7 +192,7 @@ Each recommended problem includes:
 - Score
 - Direct link to the problem
 
-## Design Goals
+## 🎯 Design Goals
 
 This algorithm is designed to achieve the following:
 
@@ -202,7 +202,7 @@ This algorithm is designed to achieve the following:
 - **Exploration vs exploitation**: strong matches are chosen, but variety is preserved
 - **Diversity**: repeated tag patterns are reduced
 
-## Project Structure
+## 📂 Project Structure
 
 ```
 cf-assistant/
@@ -229,7 +229,7 @@ cf-assistant/
     └── tsconfig.json       # TypeScript configuration
 ```
 
-## Technology Stack
+## 🛠️ Technology Stack
 
 ### Backend
 - **Framework**: FastAPI 0.135.1
@@ -243,15 +243,15 @@ cf-assistant/
 - **Build Tool**: Vite 7.3.1
 - **Styling**: Tailwind CSS 4.2.1
 
-## Getting Started
+## 🚀 Getting Started
 
-### Prerequisites
+### ✅ Prerequisites
 
 - Python 3.8+
 - Node.js 16+
 - npm or yarn
 
-### Configuration
+### ⚙️ Configuration
 
 Make config file at **frontend/src/constants/config.ts** and paste the following code
 
@@ -270,7 +270,7 @@ export type Problem = {
 }
 ```
 
-### Backend Setup
+### 🔧 Backend Setup
 
 1. Navigate to the backend directory:
    ```bash
@@ -294,7 +294,7 @@ export type Problem = {
    ```
    The API will be available at `http://127.0.0.1:8000`
 
-### Frontend Setup
+### 🖥️ Frontend Setup
 
 1. Navigate to the frontend directory:
    ```bash
@@ -312,11 +312,11 @@ export type Problem = {
    ```
    The application will be available at `http://localhost:5173` (or another port shown in terminal)
 
-## API Endpoints
+## 🔌 API Endpoints
 
-- `GET /user/problems/{handle}` - Get recommended problems for a use
+- `GET /user/problems/{handle}` - Get recommended problems for a user
 
-## Future Improvements
+## 🚀 Future Improvements
 
 Possible improvements to this algorithm include:
 
@@ -326,10 +326,10 @@ Possible improvements to this algorithm include:
 - **Adaptive sampling temperature**
 - **Better handling of new users with no history**
 
-## License
+## 📜 License
 
 This project is open source and available under the MIT License.
 
-## Support
+## 💬 Support
 
 For issues or questions, please open an issue on the project repository.
